@@ -40,7 +40,6 @@ public class Empregado {
 		return supervisionados;
 	}
 
-
 	public boolean hasSupervisionado() {
 		return supervisionado.size() > 0;
 	}
@@ -48,40 +47,48 @@ public class Empregado {
 	public void setSupervisor(Empregado supervisor) {
 		Empregado existingSupervisor = supervisor;
 		this.supervisor = supervisor;
+
 		if (existingSupervisor != null && !existingSupervisor.equals(supervisor)) {
 			existingSupervisor.removeSupervisionado(this);
 		}
+
 		if (supervisor != null) {
 			supervisor.addSupervisionado(this);
 		}
 	}
 
-
 	public boolean addSupervisionado(Empregado supervisionado) {
 		boolean adicionado = false;
+
 		if (this.supervisionado.contains(supervisionado)) {
 			return false;
 		}
+
 		Empregado existingSupervisor = supervisionado.getSupervisor();
+
 		if (existingSupervisor == null) {
 			supervisionado.setSupervisor(this);
 		} else if (!this.equals(existingSupervisor)) {
 			existingSupervisor.removeSupervisionado(supervisionado);
 			addSupervisionado(supervisionado);
 		} else {
-			this.supervisionado.add(supervisionado);	
+			this.supervisionado.add(supervisionado);
 		}
+
 		adicionado = true;
+
 		return adicionado;
 	}
 
 	public boolean removeSupervisionado(Empregado aSupervisionado) {
 		boolean wasRemoved = false;
+
 		if (supervisionado.contains(aSupervisionado)) {
 			supervisionado.remove(aSupervisionado);
 			aSupervisionado.setSupervisor(null);
 			wasRemoved = true;
 		}
+
 		return wasRemoved;
 	}
 
@@ -91,6 +98,7 @@ public class Empregado {
 			this.supervisor = null;
 			placeholderSupervisor.removeSupervisionado(this);
 		}
+
 		while (!supervisionado.isEmpty()) {
 			supervisionado.get(0).setSupervisor(null);
 		}
