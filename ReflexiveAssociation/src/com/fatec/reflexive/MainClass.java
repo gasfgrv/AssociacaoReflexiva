@@ -1,7 +1,9 @@
 package com.fatec.reflexive;
 
 public class MainClass {
-	
+
+	private static final Logger LOGGER = Logger.getClass(MainClass.class.getName());
+
 	public static void main(String[] args) {
 		Empregado aline = new Empregado("Aline");
 		Empregado joao = new Empregado("João");
@@ -19,10 +21,10 @@ public class MainClass {
 		rafaela.setSupervisor(antonio);
 		lucas.setSupervisor(antonio);
 		
-		System.out.println("Supervisionados por " + aline.getNome() +": " + aline.getSupervisionados().toString());
-		System.out.println("Supervisionados por " + antonio.getNome() +": " + antonio.getSupervisionados().toString());
-		
-		System.out.println("Supervisor de " + rafaela.getNome() +": " + rafaela.getSupervisor().toString());
-		System.out.println("Supervisor de " + lucas.getNome() +": " + lucas.getSupervisor().toString());
+		LOGGER.info("Supervisionados por " + aline.getNome() +": " + aline.getSupervisionados().toString());
+		LOGGER.info("Supervisionados por " + antonio.getNome() +": " + antonio.getSupervisionados().toString());
+
+		LOGGER.info("Supervisor de " + rafaela.getNome() +": " + rafaela.getSupervisor().toString());
+		LOGGER.info("Supervisor de " + lucas.getNome() +": " + lucas.getSupervisor().toString());
 	}
 }
